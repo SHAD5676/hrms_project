@@ -55,7 +55,7 @@ class DesignationController extends Controller
     public function edit(Designation $designation)
     {
          $departments = Department::all();
-        return view('designations.edit', compact('designation','departments'));
+        return view('admin.designations.edit', compact('designation','departments'));
     }
 
     /**

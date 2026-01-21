@@ -15,7 +15,6 @@ class DepartmentController extends Controller
     {
         $departments = Department::all();
         return view('admin.departments.index', compact('departments'));
-    
     }
 
     /**
@@ -26,34 +25,39 @@ class DepartmentController extends Controller
         return view('admin.departments.create');
     }
 
+   
+
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|unique:departments,name',
-        ]);
+  public function store(Request $request)
+{
+    $request->validate(
+        [
+            'name' => 'required|min:3|max:12',
+        ],
+        [
+            'name.required' => 'Department name is required',
+            'name.min' => 'Minimum 3 characters required',
+            'name.max' => 'Maximum 12 characters allowed',
+        ]
+    );
 
-        Department::create($request->all());
-        return redirect()->route('departments.index')->with('success', 'Department created successfully.');
+    Department::create([
+        'name' => $request->name,
+    ]);
 
-    }
+    return redirect()->route('departments.index')
+        ->with('success', 'Department created successfully');
+}
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Department $department)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Department $department)
     {
-         return view('departments.edit', compact('department'));
+        return view('admin.departments.edit', compact('department'));
     }
 
     /**
@@ -62,10 +66,15 @@ class DepartmentController extends Controller
     public function update(Request $request, Department $department)
     {
         $request->validate([
-            'name' => 'required|unique:departments,name,'.$department->id,
+            'name' => 'required|min:3|max:12',
+        ], [
+            'name.required' => 'Department name is required',
+            'name.min' => 'Minimum 3 characters required',
+            'name.max' => 'Maximum 12 characters allowed',
         ]);
 
-        $department->update($request->all());
+        $department->update($request->only('name'));
+
         return redirect()->route('departments.index')->with('success', 'Department updated successfully.');
     }
 
@@ -75,6 +84,7 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         $department->delete();
+
         return redirect()->route('departments.index')->with('success', 'Department deleted successfully.');
     }
 }
