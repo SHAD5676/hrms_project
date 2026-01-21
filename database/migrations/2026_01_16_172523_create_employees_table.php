@@ -6,27 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    
     public function up(): void
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name', 50);
         $table->string('email')->unique();
         $table->string('phone')->nullable();
-        $table->foreignId('department_id')->constrained()->cascadeOnDelete();
-        $table->foreignId('designation_id')->constrained()->cascadeOnDelete();
+        $table->Id('department_id');
+        $table->Id('designation_id');
         $table->date('joining_date')->nullable();
-        $table->boolean('status')->default(1); // Active/Inactive
+        $table->boolean('status')->default(1); 
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+ 
     public function down(): void
     {
         Schema::dropIfExists('employees');

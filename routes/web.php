@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -12,7 +13,7 @@ use App\Http\Controllers\Admin\PayrollController;
 
 Route::get('/', function () {
     return redirect()->route('dashboard');
-    });
+});
 
 
 Route::get('/admin', function () {
@@ -22,7 +23,10 @@ Route::get('/admin', function () {
 
 Route::middleware('auth')->group(function () {
 
-    
+    Route::get('/post/create', [PostController::class, 'create']);
+    Route::post('/post', [PostController::class, 'store']);
+
+
     Route::resource('departments', DepartmentController::class);
     Route::resource('designations', DesignationController::class);
     Route::resource('employees', EmployeeController::class);
@@ -41,13 +45,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-    Route::post('/logout', function () {
-    Auth::logout();
-    request()->session()->invalidate();
-    request()->session()->regenerateToken();
 
-    return redirect('/login');
-})->name('logout');
+
+    Route::post('/logout', function () {
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect('/login');
+    })->name('logout');
 });
 
 

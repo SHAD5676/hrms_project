@@ -9,17 +9,19 @@ return new class extends Migration
     
     public function up(): void
     {
-        Schema::create('departments', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 50); 
-            $table->boolean('status')->default(1); 
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
 
-    
+   
     public function down(): void
     {
-        Schema::dropIfExists('departments');
+        Schema::dropIfExists('admins');
     }
 };

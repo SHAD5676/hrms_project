@@ -6,14 +6,12 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    
     public function up(): void
     {
         Schema::create('leaves', function (Blueprint $table) {
             $table->id();
-             $table->foreignId('employee_id')->constrained()->cascadeOnDelete();
+             $table->Id('employee_id');
         $table->enum('type', ['casual','sick','annual']);
         $table->date('from_date');
         $table->date('to_date');
@@ -23,9 +21,7 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+   
     public function down(): void
     {
         Schema::dropIfExists('leaves');
