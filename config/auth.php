@@ -42,6 +42,21 @@ return [
         ],
     ],
 
+    
+    'admin' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+    ],
+
+     'manager=' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'manager',
+        ],
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -70,6 +85,24 @@ return [
         //     'table' => 'users',
         // ],
     ],
+
+    
+    'admins' => [
+
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\User::class),
+        ],
+
+
+    'manager' => [
+
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\User::class),
+        ],
+
+
+        
+  
 
     /*
     |--------------------------------------------------------------------------

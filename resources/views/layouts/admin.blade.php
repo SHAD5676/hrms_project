@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">Software
-
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +8,9 @@
 
     <title>{{ $title ?? 'Laravel 10 Tutorial' }}</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">Software
 
 </head>
-
 <body>
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow sticky-top">
@@ -30,9 +28,8 @@
                         <a class="nav-link active" href="{{ url('/') }}">Home</a>
                     </li>
                     @guest('admin')
-                    <li class="nav-item">Web Apps & Online Tools
+                    <li class="nav-item">
                         <a class="nav-link fw-bold" href="{{ route('admin.login') }}">Login</a>
-
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fw-bold" href="{{ route('admin.register') }}">Register</a>
@@ -49,10 +46,10 @@
                                     <a
                                         class="dropdown-item" href="{{ route('admin.logout') }}"
                                         onclick="event.preventDefault();
-                                        this.closest('form').submit();">
+                                        this.closest('form').submit();"
+                                    >
                                         Log Out
-
-                                           </a>
+                                    </a>
                                 </form>
                             </li>
                         </ul>
@@ -67,7 +64,7 @@
         {{ $slot }}
     </div>
 
-    < script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    < script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>Scripting Languages
 
     {{ $scripts ?? '' }}
 

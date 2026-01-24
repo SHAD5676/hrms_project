@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 class RouteServiceProvider extends ServiceProvider
 {
     public const HOME = '/admin';
+    public const ADMIN_DASHBOARD = '/admin/dashboard';
+    
 
     public function boot(): void
     {

@@ -39,7 +39,7 @@ class LoginController extends Controller
 
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('admin')->logout();
+        Auth::guard('admin')->user();
 
         $request->session()->invalidate();
 
